@@ -6,6 +6,8 @@
 	<script src="some-scripts.js"></script>
 </head>
 <body>
+	<p>This example sends a POST request for each one of the first 5 error that happen on this page.</p>
+	<p>To see the content of the logging requests open FireBug and look for 'logging-endpoint'.</p>
 	<button type="button" onClick="throwError.methodWithError();">throw an error</button>
 	<button type="button" onClick="logStackTraceOfError.methodWithError();">log stack trace of an error</button>
 	<button type="button" onClick="logStackTrace.methodWithError();">log stack trace</button>

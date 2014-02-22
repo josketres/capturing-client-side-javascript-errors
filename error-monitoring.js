@@ -1,6 +1,6 @@
 (function(w) {
 	var errorCount = 0,
-		endpointUrl = '/logging-endpoint',
+		endpointUrl = 'logging-endpoint',
 		logError,
 		globalErrorHandler,
 		sendHttpRequest,
