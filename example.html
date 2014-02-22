@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://rawgithub.com/stacktracejs/stacktrace.js/v0.6.0/stacktrace.js"></script>
+	<script src="/error-monitoring.js"></script>	
+	<script src="/some-scripts.js"></script>
+</head>
+<body>
+	<button type="button" onClick="throwError.methodWithError();">Throw an error</button>
+	<button type="button" onClick="logStackTraceOfError.methodWithError();">log stack trace of an error</button>
+	<button type="button" onClick="logStackTrace.methodWithError();">log stack trace</button>
+</body>
+</html>
