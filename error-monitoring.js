@@ -1,6 +1,6 @@
 (function(w) {
 	var errorCount = 0,
-		endpointUrl = 'logging-endpoint',
+		endpointUrl = 'http://localhost:1337/error-report',
 		logError,
 		globalErrorHandler,
 		sendHttpRequest,
@@ -21,23 +21,35 @@
 	};
 
 	sendHttpRequest = function(error) {
-		var xhr = createXHR();
+		var xhr = createXMLHTTPObject();
 		xhr.open('POST', endpointUrl, true);
 		xhr.send(error);
 	};
 
-	createXHR = function() {
-		var xhr;
-		if (window.ActiveXObject) {
+
+	createXMLHTTPObject = function() {
+		var xmlhttp, XMLHttpFactories = [
+				function() {
+					return new XMLHttpRequest();
+				},
+				function() {
+					return new ActiveXObject('Msxml2.XMLHTTP');
+				},
+				function() {
+					return new ActiveXObject('Msxml3.XMLHTTP');
+				},
+				function() {
+					return new ActiveXObject('Microsoft.XMLHTTP');
+				}
+			];
+		for (var i = 0; i < XMLHttpFactories.length; i++) {
 			try {
-				xhr = new ActiveXObject("Microsoft.XMLHTTP");
-			} catch (e) {
-				xhr = null;
-			}
-		} else {
-			xhr = new XMLHttpRequest();
+				xmlhttp = XMLHttpFactories[i]();
+				// Use memoization to cache the factory
+				createXMLHTTPObject = XMLHttpFactories[i];
+				return xmlhttp;
+			} catch (e) {}
 		}
-		return xhr;
 	};
 
 	// Export logger object and set global error handler

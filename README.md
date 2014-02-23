@@ -1,1 +1,1 @@
-# Example for capturing client-side javascript errors
+# Example for monitoring client-side javascript errors
